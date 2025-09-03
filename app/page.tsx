@@ -77,7 +77,7 @@ function HeroPost({
 }
 
 export default async function Page() {
-  const { isEnabled } = draftMode();
+  var isEnabled = (await draftMode()).isEnabled;
   const allPosts = await getAllPosts(isEnabled);
   const heroPost = allPosts[0];
   const morePosts = allPosts.slice(1);
