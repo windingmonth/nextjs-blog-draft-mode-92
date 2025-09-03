@@ -25,7 +25,7 @@ export default async function PostPage({
   // 解析 params Promise
   const { slug } = await params;
   
-  var isEnabled  = (await draftMode()).isEnabled;
+  const { isEnabled } = await draftMode();
   const { post, morePosts } = await getPostAndMorePosts(slug, isEnabled);
 
   return (
