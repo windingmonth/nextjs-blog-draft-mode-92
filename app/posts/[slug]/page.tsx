@@ -20,10 +20,13 @@ export async function generateStaticParams() {
 export default async function PostPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  var isEnabled  = (await draftMode()).isEnabled;
-  const { post, morePosts } = await getPostAndMorePosts(params.slug, isEnabled);
+  // 解析 params Promise
+  const { slug } = await params;
+  
+  const { isEnabled } = await draftMode();
+  const { post, morePosts } = await getPostAndMorePosts(slug, isEnabled);
 
   return (
     <div className="container mx-auto px-5">
